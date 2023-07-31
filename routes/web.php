@@ -1,38 +1,50 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AgreementController;
+use App\Http\Controllers\DispatcherController;
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LoadController;
+use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\PolicyController;
+use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\RouteController;
+use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\SitemapDispatcherController;
+use App\Http\Controllers\SitemapLoadController;
+use App\Http\Controllers\SitemapRouteController;
+use App\Http\Controllers\SitemapTransportController;
+use App\Http\Controllers\TermsController;
+use App\Http\Controllers\TransportController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'setLocale']
+], function () {
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    Route::post('/locale', LocaleController::class)->name('locale');
+
+    Route::get('/', IndexController::class)->name('index');
+    Route::get('/about-us', AboutController::class)->name('about-us');
+    Route::get('/agreements', AgreementController::class)->name('agreements');
+    Route::get('/policy', PolicyController::class)->name('policy');
+    Route::get('/terms-of-use', TermsController::class)->name('terms-of-use');
+
+    Route::get('/truck-profit-calculator/{transport:slug}', [TransportController::class, 'show'])->name('truck-profit-calculator.show');
+
+    Route::resource('/publications', PublicationController::class)->only(['index', 'show'])->scoped(['publication' => 'slug']);
+
+    Route::resource('/truck-dispatcher', DispatcherController::class)->only(['index', 'show'])->scoped(['publication' => 'slug']);
+    Route::resource('/find-loads', LoadController::class)->only(['index', 'show'])->scoped(['publication' => 'slug']);
+
+    Route::get('/route-planner/{cityFrom}/{cityTo}', RouteController::class)->name('calculate-freight-rates-cityFrom-cityTo');
+
+    Route::prefix('sitemap')->name('sitemap.')->group(function () {
+        Route::get('/', SitemapController::class)->name('index');
+        Route::get('/truck-profit-calculator', SitemapTransportController::class)->name('calculate-freight-rates');
+        Route::get('/truck-dispatcher', SitemapDispatcherController::class)->name('routes');
+        Route::get('/find-loads', SitemapLoadController::class)->name('services');
+        Route::get('/route-planner', SitemapRouteController::class)->name('shipping');
+    });
 });
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';

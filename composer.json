@@ -6,14 +6,27 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "bensampo/laravel-enum": "^6.4",
+        "ebess/advanced-nova-media-library": "^4.1",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.6.8",
+        "jenssegers/agent": "^2.6",
         "laravel/framework": "^10.10",
+        "laravel/nova": "^4.0",
         "laravel/sanctum": "^3.2",
+        "laravel/telescope": "^4.15",
         "laravel/tinker": "^2.8",
-        "tightenco/ziggy": "^1.0"
+        "league/html-to-markdown": "^5.1",
+        "mcamara/laravel-localization": "^1.8",
+        "spatie/laravel-medialibrary": "^10.10",
+        "spatie/laravel-translatable": "^6.5",
+        "spatie/nova-translatable": "^4.0",
+        "spatie/schema-org": "^3.14",
+        "tightenco/ziggy": "^1.0",
+        "torann/geoip": "^3.0"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.13",
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "^1.21",
         "laravel/pint": "^1.0",
@@ -41,13 +54,21 @@
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "@php artisan nova:publish",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "fix-style": [
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:meta",
+            "php artisan ide-helper:models -WR"
         ]
     },
     "extra": {
@@ -65,5 +86,11 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": {
+        "nova": {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    }
 }
