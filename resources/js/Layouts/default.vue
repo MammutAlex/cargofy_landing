@@ -1,7 +1,7 @@
 <script setup>
 import CommonHeader from '@/Components/Common/Header.vue';
 import CommonFooter from '@/Components/Common/Footer.vue';
-import {Link} from '@inertiajs/vue3';
+import {Head} from "@inertiajs/vue3";
 
 defineProps({
     landing: {
@@ -15,6 +15,13 @@ defineProps({
 </script>
 
 <template>
+    <Head v-if="page">
+        <title>{{page.meta_title||page.title}}</title>
+        <meta name="description" :content="page.meta_description||page.description"/>
+        <component is="script" type="application/ld+json" v-if="page.schema">
+            {{ JSON.stringify(page.schema) }}
+        </component>
+    </Head>
     <q-layout view="hHh lpR lff">
         <div
             class="page-wrap"

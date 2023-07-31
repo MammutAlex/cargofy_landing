@@ -15,6 +15,43 @@
         "item4_text": "cost of all deals",
         "Investors": "Investors"
     },
+    "how_work": {
+        "find_title": "Find",
+        "find_description": "Explore a vast range of over 115K daily load options, simplifying the search for the perfect match for your trucking needs",
+        "find_img_text": "Only actual loads personally for you",
+        "book_title": "Book",
+        "book_description": "Instantly secure a load or participate in tenders, placing competitive bids to win new business opportunities",
+        "book_img_text": "Step-by-step instructions in the application",
+        "deliver_title": "Deliver",
+        "deliver_description": "Gain access to a detailed timeline, complete with step-by-step instructions to ensure a seamless and efficient load delivery process",
+        "deliver_img_text": "Everything in one application: fast, accessible, understandable"
+    },
+    "advantages": {
+        "mileage_title": "High mileage",
+        "mileage_description": "Our algorithm will make sure your truck is utilized with maximum efficiency",
+        "rates_title": "Competitive rates",
+        "rates_description": "Wherever you go, Cargofy will select the highest paying loads",
+        "set_title": "Single set-up",
+        "set_description": "Cargofy provides an all-in-one, out-the-box solution - instantly connecting you to our entire network of freight brokers and shippers",
+        "dispatcher_title": "Personal dispatcher",
+        "dispatcher_description": "Every truck has a dedicated dispatcher helping with pick-up and drop-offs, and any problems in between!",
+        "brand_title": "Truck branding",
+        "brand_description": "We give you the opportunity to brand your truck and get additional income",
+        "pay_title": "Quick payment",
+        "pay_description": "Cargofy always makes sure you get paid and get paid quickly!"
+    },
+    "benefits": {
+        "title": "Benefits for carriers",
+        "text": "Exclusive discounts for Cargofy truckers",
+        "fuel_title": "Fuel",
+        "fuel_description": "Get up to $0.20/gal off at the pump!",
+        "insurance_title": "Insurance",
+        "insurance_description": "Get coverage through our insurance partners",
+        "parts_title": "Parts",
+        "parts_description": "Need new tires? Check out our discounts",
+        "truck_title": "Truck",
+        "truck_description": "Profitably lease-to-own with Cargofy"
+    },
     "banners": {
         "text1": "provides freight transport with regular work throughout US, fixed rate per mile traveled",
         "guaranteed mileage from": "Guaranteed mileage from",
@@ -27,10 +64,6 @@
         "dispatchers": "Dispatchers",
         "dispatchers_text": "Want to engage in organizing freight transportation from home?",
         "fill_out_form": "Fill out the form"
-    },
-    "benefits": {
-        "title": "Benefits for carriers",
-        "text": "Exclusive discounts for Cargofy truckers"
     },
     "navigation_benefits": {
         "title": "All services for truckers in one application",

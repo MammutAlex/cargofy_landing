@@ -43,7 +43,7 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
+<style>
 @keyframes moveSlideshow {
   100% {
     transform: translateX(-50%);

@@ -29,7 +29,7 @@
             </Link>
           </div>
           <div class="q-mb-sm">
-            <Link :to="route('publications.index')"
+            <Link :href="route('publications.index')"
               >{{ $t("footer.blog") }}
             </Link>
           </div>
@@ -99,19 +99,19 @@
         class="container tw-flex tw-flex-col md:tw-flex-row md:tw-items-center"
       >
         <div class="md:tw-mr-6 tw-pb-2">
-          <Link :to="route('agreements')">
+          <Link :href="route('agreements')">
               {{ $t("footer.Public offer") }}
           </Link>
         </div>
 
         <div class="md:tw-mr-6 tw-pb-2">
-          <Link :to="route('terms-of-use')">
+          <Link :href="route('terms-of-use')">
               {{ $t("footer.Terms of use") }}
           </Link>
         </div>
 
         <div class="md:tw-mr-6 tw-pb-2">
-          <Link :to="route('policy')">
+          <Link :href="route('policy')">
               {{ $t("footer.Privacy policy") }}
           </Link>
         </div>
