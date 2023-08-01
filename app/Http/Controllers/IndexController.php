@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Data\BidsData;
+use App\Http\Data\FaqData;
 use App\Http\Data\PartnerData;
+use App\Http\Data\PublicationData;
+use App\Http\Data\ReviewData;
 use App\Http\Data\TrucksData;
 use App\Http\Pages\IndexPage;
 use Illuminate\Support\Facades\Request;
@@ -32,6 +35,9 @@ class IndexController extends Controller
             ]),
             'trucks' => TrucksData::make(),
             'partners' => PartnerData::make(),
+            'reviews' => ReviewData::make(),
+            'publications' => PublicationData::make(),
+            'faq' => FaqData::make(),
         ]);
     }
 }

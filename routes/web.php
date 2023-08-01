@@ -8,6 +8,7 @@ use App\Http\Controllers\LoadController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\SitemapDispatcherController;
@@ -23,6 +24,7 @@ Route::group([
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'setLocale']
 ], function () {
 
+    Route::post('/registration', RegistrationController::class)->name('registration');
     Route::post('/locale', LocaleController::class)->name('locale');
 
     Route::get('/', IndexController::class)->name('index');

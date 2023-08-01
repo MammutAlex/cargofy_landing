@@ -115,6 +115,6 @@ const form = useForm({
 })
 
 async function send() {
-    form.post(route('register'))
+    form.post(route('registration'))
 }
 </script>

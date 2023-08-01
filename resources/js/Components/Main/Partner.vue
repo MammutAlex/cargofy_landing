@@ -5,12 +5,12 @@
         <div
           class="q-ml-auto md:tw-mb-0 tw-mb-5 lg:tw-absolute flex flex-center tw-right-0 tw-top-0 tw-bottom-0"
         >
-          <nuxt-img
+          <img
             class="md:tw-w-auto tw-w-3/4"
             width="639"
             height="135"
             loading="lazy"
-            src="/images/bus4.svg"
+            src="@/assets/images/bus4.svg"
           />
         </div>
 
@@ -29,11 +29,12 @@
                   {{ $t("partner.text2") }}:
                 </div>
 
-                <ui-input-country-phone
+                <UiInputCountryPhone
                   :autofocus="false"
                   dense
                   v-model="form.phone"
-                  v-model:error="errors.phone"
+                  v-model:error="form.errors.phone"
+                  v-model:country_id="form.country_id"
                   class="q-mb-md"
                 />
 
@@ -49,30 +50,24 @@
                 <div class="text-caption text-blue-grey-5">
                   {{ $t("partner.text3") }}
 
-                  <nuxt-link
+                  <Link
                     style="text-decoration: underline"
                     class="text-primary"
-                    :to="localePath({ name: 'terms-of-use' })"
-                    >{{ $t("partner.privacy_terms") }}</nuxt-link
-                  >
+                    :href="route('terms-of-use')"
+                    >
+                      {{ $t("partner.privacy_terms") }}
+                  </Link>
                 </div>
 
-                <form-error
-                  v-if="isError"
+                <FormError
+                    v-if="form.hasErrors && !form.errors.phone"
                   class="tw-absolute tw-top-0 tw-left-0 tw-right-0 tw-bottom-0 tw-z-10"
                 />
               </div>
-
-              <!-- <form-success
-              v-if="isSuccess"
-              class="
-                tw-absolute tw-top-0 tw-left-0 tw-right-0 tw-bottom-0 tw-z-10
-              "
-            /> -->
             </q-form>
 
             <div
-              v-if="isSuccess"
+                v-if="form.wasSuccessful"
               class="tw-absolute tw-top-0 tw-left-0 tw-right-0 tw-bottom-0 tw-z-10 flex items-center bg-grey-2"
             >
               <div>
@@ -98,16 +93,23 @@
     </div>
   </div>
 </template>
-
-
-
 <script setup>
-const form = ref({})
-const localePath = useLocalePath()
-const { isLoading, postLead, isSuccess, isError, errors } = useForm()
+import {computed} from "vue";
+import {Link, useForm, usePage} from "@inertiajs/vue3";
+import FormError from "@/Components/Form/Error.vue";
+import UiInputCountryPhone from "@/Components/ui/InputCountryPhone.vue";
+
+const page = usePage()
+
+const activeLocale = computed(() => page.props.activeLocale)
+
+
+const form = useForm({
+    phone: null,
+    country_id: activeLocale.value.country_id,
+})
+
 async function send() {
-  const resp = await postLead(form.value, {
-    url: "sms_link",
-  })
+    form.post(route('registration'))
 }
 </script>

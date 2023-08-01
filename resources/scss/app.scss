@@ -1,16 +1,35 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @import "@quasar/extras/roboto-font/roboto-font.css";
 @import "@quasar/extras/material-icons/material-icons.css";
 @import "@quasar/extras/material-icons-outlined/material-icons-outlined.css";
 @import "@quasar/extras/material-icons-outlined/material-icons-outlined.css";
-@import "/node_modules/flag-icons/css/flag-icons.min.css";
 
 @import './fonts/fonts.css';
 @import './quasar-variables.sass';
 @import 'quasar/src/css/index.sass';
+
+@import "/node_modules/flag-icons/css/flag-icons.min.css";
+@import "@fancyapps/ui/dist/carousel.css";
+
+.q-field--outlined {
+    .q-field--outlined {
+        .q-field__control {
+            padding-right: 0 !important;
+            &:before {
+                border: none !important;
+            }
+            &:after {
+                content: none !important;
+            }
+        }
+        .q-field__native {
+            padding-top: 2px !important;
+        }
+    }
+}
 
 //container breakpoints
 .container {

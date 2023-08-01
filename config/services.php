@@ -30,5 +30,9 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'cargohub' => [
+        'url' => env('CARGOHUB_URL', 'https://api.dispatcher24.dev/carrierlanding/v1'),
+        'app_web' => env('CARRIER_APP', 'https://app.cargofy.com'),
+    ],
 
 ];
